@@ -69,6 +69,14 @@ Configured in `app/config.py`:
 
 Add more by appending `{"name": ..., "url": ...}` to `SOURCES` — any RSS 2.0 feed works.
 
+**Known caveat:** the FCA puts its feed behind a Cloudflare bot challenge (`cf-mitigated:
+challenge`) that a plain HTTP client can't pass, browser `User-Agent` or not — it needs an
+actual browser or a scraping service (e.g. Firecrawl) to fetch. `scan_all` treats a failed
+fetch as "skip this source for this cycle" rather than failing the whole scan, so the FCA
+source will reliably no-op (`sources_scanned` won't count it) until it's fetched through
+something that can clear the challenge. The two Bank of England feeds are not behind this
+and work with a plain `httpx` client.
+
 ## Tests
 
 ```bash

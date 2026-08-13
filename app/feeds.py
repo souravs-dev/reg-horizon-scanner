@@ -4,6 +4,15 @@ from dataclasses import dataclass
 import feedparser
 import httpx
 
+# Regulator sites (FCA, Bank of England) return 403 to the default httpx/feedparser
+# user agent — they block anything that doesn't look like a browser.
+REQUEST_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+    )
+}
+
 
 @dataclass
 class NormalizedClause:
@@ -46,6 +55,6 @@ def _struct_time_to_iso(struct_time) -> str:
 
 
 async def fetch_feed(client: httpx.AsyncClient, name: str, url: str) -> list[NormalizedClause]:
-    response = await client.get(url, timeout=20.0)
+    response = await client.get(url, headers=REQUEST_HEADERS, timeout=20.0)
     response.raise_for_status()
     return await asyncio.to_thread(parse_feed, name, response.content)
