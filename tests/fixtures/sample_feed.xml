@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Test Regulator Feed</title>
+  <link>https://example.com/</link>
+  <description>Sample feed for tests</description>
+  <item>
+    <title>New consumer duty guidance published</title>
+    <link>https://example.com/news/consumer-duty-guidance</link>
+    <guid>guid-consumer-duty-1</guid>
+    <description>Firms must implement the new consumer duty rules by 31 December 2026.</description>
+    <pubDate>Mon, 01 Jan 2026 09:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>Speech: the future of open banking</title>
+    <link>https://example.com/news/open-banking-speech</link>
+    <guid>guid-open-banking-1</guid>
+    <description>A speech reflecting on progress in open banking. No new requirements.</description>
+    <pubDate>Tue, 02 Jan 2026 09:00:00 GMT</pubDate>
+  </item>
+</channel>
+</rss>
